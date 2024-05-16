@@ -1,4 +1,4 @@
-export enum CreamFaceTypeEnum {
+export enum FaceCreamTypeEnum {
   ANTI_AGING = "anti-aging",
   MOISTURIZERS = "moisturizers",
   ACNE = "acne",

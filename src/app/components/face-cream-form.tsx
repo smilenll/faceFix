@@ -3,14 +3,21 @@ import { FormEvent, useState } from "react";
 import { Select } from "../shared/components/Select";
 import { ISkinCreamParams } from "../shared/interfaces/ai-api";
 import { OilinessEnum, ThicknessEnum } from "../shared/enums/SkinEnum";
+import { objectToQueryString } from "../utils/ObjectToString";
 
-export function FaceCreamForm() {
+type Props = {
+  setResult: (result: any) => void
+}
+
+export function FaceCreamForm(props: Props) {
+  // TODO: find why useActionState doses't work probably local env issue
   const [form, setForm] = useState<ISkinCreamParams>({
     age: 0,
     skinColor: 0,
     oiliness: OilinessEnum.OILY,
     thickness: ThicknessEnum.THIN,
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -20,9 +27,16 @@ export function FaceCreamForm() {
     });
   };
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    setLoading(true);
     event.preventDefault();
-    console.log(form);
+    const response = await fetch(
+      `http://localhost:3000/api/face-cream?${objectToQueryString(form)}`
+    );
+    const r = await response.json();
+    console.log(r);
+    props.setResult(r);
+    setLoading(false);
   };
 
   return (
@@ -60,6 +74,7 @@ export function FaceCreamForm() {
         />
       </>
       <button
+        disabled={loading}
         type="submit"
         className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
       >

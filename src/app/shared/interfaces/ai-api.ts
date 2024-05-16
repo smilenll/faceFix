@@ -1,4 +1,4 @@
-import { CreamFaceTypeEnum } from "../enums/CreamEnum";
+import { FaceCreamTypeEnum } from "../enums/CreamEnum";
 import { OilinessEnum, ThicknessEnum } from "../enums/SkinEnum";
 import { IResponse } from "./http";
 
@@ -9,20 +9,21 @@ export interface ISkinCreamParams {
   thickness: ThicknessEnum;
 }
 
-export interface IAIResponseMessage {
-  message: CreamFaceTypeEnum;
-}
-
 export interface IAIResponseCreamList {
   creamList: Array<string>;
 }
 
-export interface IAIApi {
-  getSkinProductType(params: ISkinCreamParams): IResponse<IAIResponseMessage>;
+export interface IFaceCreamType {
+  category: FaceCreamTypeEnum;
+  description: string;
+}
+
+export interface IAIService {
+  getSkinCreamType(params: ISkinCreamParams): Promise<any>;
   getSkinCreamDescription(
-    cream: CreamFaceTypeEnum
-  ): IResponse<{ message: string }>;
-  getSkinCreamDescription(
-    cream: CreamFaceTypeEnum
-  ): IResponse<IAIResponseCreamList>;
+    params: ISkinCreamParams
+  ): Promise<any>;
+  getSkinCreamProducts(
+    cream: FaceCreamTypeEnum
+  ): Promise<IResponse<IAIResponseCreamList>>;
 }
