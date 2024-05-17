@@ -1,11 +1,10 @@
 import { MessageBuilder } from "@/app/builders/MessageBuidler";
 import { FaceCreamTypeEnum } from "@/app/shared/enums/CreamEnum";
 import {
-  IAIResponseCreamList,
   IAIService,
+  IProduct,
   ISkinCreamParams,
 } from "@/app/shared/interfaces/ai-api";
-import { IResponse } from "@/app/shared/interfaces/http";
 import OpenAI from "openai";
 
 export class OpenAIService implements IAIService {
@@ -44,10 +43,15 @@ export class OpenAIService implements IAIService {
     return this.getGptMessage(chatGPTResponse);
   }
 
-  getSkinCreamProducts(
-    cream: FaceCreamTypeEnum
-  ): Promise<IResponse<IAIResponseCreamList>> {
-    throw new Error("Method not implemented.");
+  async getSkinCreamProducts(
+    category: FaceCreamTypeEnum
+  ): Promise<Array<IProduct>> {
+    const message = this.messageBuilder.productsNames(category);
+
+    const chatGPTResponse = await this.sendGptQuery(message);
+    console.log(chatGPTResponse);
+
+    return this.getGptArray(chatGPTResponse);
   }
 
   private async sendGptQuery(message: string) {
@@ -60,9 +64,18 @@ export class OpenAIService implements IAIService {
   private getGptMessage(
     response: OpenAI.Chat.Completions.ChatCompletion
   ): string {
-    //TODO validate response
+    //TODO validate response handle multiple choices
     if (!response.choices[0].message.content) throw Error("Bad request");
     
     return response.choices[0].message.content;
+  }
+
+  private getGptArray(
+    response: OpenAI.Chat.Completions.ChatCompletion
+  ): Array<IProduct> {
+    //TODO validate response handle multiple choices
+    if (!response.choices[0].message.content) throw Error("Bad request");
+    
+    return JSON.parse(response.choices[0].message.content);
   }
 }

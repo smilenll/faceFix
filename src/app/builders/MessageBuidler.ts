@@ -23,6 +23,6 @@ export class MessageBuilder {
   public productsNames(category: FaceCreamTypeEnum) {
     return `For face cream type
     ${category}
-    give me an option from 3 most popular manicures`;
+    give me an option from 3 most popular product by brand and productName as JSON array`;
   }
 }

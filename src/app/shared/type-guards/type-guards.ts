@@ -1,12 +1,14 @@
 import { FaceCreamTypeEnum } from "../enums/CreamEnum";
 import { IFaceCreamType } from "../interfaces/ai-api";
 
+export function isFaceCreamTypeEnumGuard(
+  category?: string
+): category is FaceCreamTypeEnum {
+  return Object.values(FaceCreamTypeEnum).some((fct) => fct === category);
+}
+
 export function isFaceCreamTypeGuard(
   input?: Partial<IFaceCreamType>
 ): input is IFaceCreamType {
-  const category = Object.values(FaceCreamTypeEnum).find(
-    (fct) => fct === input?.category
-  );
-
-  return !!(category && input?.description);
+  return !!(isFaceCreamTypeEnumGuard(input?.category) && input?.description);
 }

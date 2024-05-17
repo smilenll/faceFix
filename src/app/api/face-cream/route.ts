@@ -1,6 +1,6 @@
 import { OilinessEnum, ThicknessEnum } from "@/app/shared/enums/SkinEnum";
 import { ISkinCreamParams } from "@/app/shared/interfaces/ai-api";
-import { OpenAIService } from "@/services/AiService";
+import { OpenAIService } from "@/app/services/OpenAiService";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {

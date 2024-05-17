@@ -9,6 +9,11 @@ export interface ISkinCreamParams {
   thickness: ThicknessEnum;
 }
 
+export interface IProduct {
+  brand: string;
+  productName: string;
+}
+
 export interface IAIResponseCreamList {
   creamList: Array<string>;
 }
@@ -18,12 +23,8 @@ export interface IFaceCreamType {
   description: string;
 }
 
-export interface IAIService {
-  getSkinCreamType(params: ISkinCreamParams): Promise<any>;
-  getSkinCreamDescription(
-    params: ISkinCreamParams
-  ): Promise<any>;
-  getSkinCreamProducts(
-    cream: FaceCreamTypeEnum
-  ): Promise<IResponse<IAIResponseCreamList>>;
+export interface IAIService { 
+  getSkinCreamType(params: ISkinCreamParams): Promise<string>;
+  getSkinCreamDescription(params: ISkinCreamParams): Promise<string>;
+  getSkinCreamProducts(cream: FaceCreamTypeEnum): Promise<Array<IProduct>>;
 }
