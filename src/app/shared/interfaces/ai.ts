@@ -1,6 +1,5 @@
 import { FaceCreamTypeEnum } from "../enums/CreamEnum";
 import { OilinessEnum, ThicknessEnum } from "../enums/SkinEnum";
-import { IResponse } from "./http";
 
 export interface ISkinCreamParams {
   age: number;

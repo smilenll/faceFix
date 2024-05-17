@@ -1,7 +1,7 @@
 "use client";
 import { FormEvent, useState } from "react";
 import { Select } from "../shared/components/Select";
-import { ISkinCreamParams } from "../shared/interfaces/ai-api";
+import { ISkinCreamParams } from "../shared/interfaces/ai";
 import { OilinessEnum, ThicknessEnum } from "../shared/enums/SkinEnum";
 import { objectToQueryString } from "../utils/ObjectToString";
 

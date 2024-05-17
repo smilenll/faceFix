@@ -1,6 +1,6 @@
 'use client'
 
-import { IFaceCreamType } from "../shared/interfaces/ai-api";
+import { IFaceCreamType } from "../shared/interfaces/ai";
 
 export const FaceCreamInfo = ({category, description}: IFaceCreamType) => {
 

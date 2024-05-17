@@ -1,5 +1,5 @@
 import { FaceCreamTypeEnum } from "../enums/CreamEnum";
-import { IFaceCreamType } from "../interfaces/ai-api";
+import { IFaceCreamType } from "../interfaces/ai";
 
 export function isFaceCreamTypeEnumGuard(
   category?: string

@@ -1,7 +1,7 @@
 import {
   FaceCreamTypeEnum,
 } from "../shared/enums/CreamEnum";
-import { ISkinCreamParams } from "../shared/interfaces/ai-api";
+import { ISkinCreamParams } from "../shared/interfaces/ai";
 
 export class MessageBuilder {
   public categoryRequest(

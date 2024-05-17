@@ -1,6 +1,8 @@
 import { isFaceCreamTypeEnumGuard } from "@/app/shared/type-guards/type-guards";
 import { OpenAIService } from "@/app/services/OpenAiService";
 import { NextRequest, NextResponse } from "next/server";
+import { AmazonAuth } from "@/app/auth/amazon";
+import AmazonService from "@/app/services/AmazonService";
 
 export async function GET(
   request: NextRequest,
@@ -12,9 +14,15 @@ export async function GET(
     throw Error("Category not found");
   }
 
-  const productsList = await OpenAIService.getInstance().getSkinCreamProducts(slug);
+  const productsList = await OpenAIService.getInstance().getSkinCreamProducts(
+    slug
+  );
+  const amazonService = await new AmazonService(await AmazonAuth());
+  const marketProducts = await Promise.all(
+    productsList.map(async (p) => (await amazonService.getProduct(p.brand, p.productName)).body)
+  );
 
   return NextResponse.json({
-    products: productsList,
+    products: marketProducts,
   });
 }

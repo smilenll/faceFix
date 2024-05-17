@@ -1,5 +1,5 @@
 import { OilinessEnum, ThicknessEnum } from "@/app/shared/enums/SkinEnum";
-import { ISkinCreamParams } from "@/app/shared/interfaces/ai-api";
+import { ISkinCreamParams } from "@/app/shared/interfaces/ai";
 import { OpenAIService } from "@/app/services/OpenAiService";
 import { NextRequest, NextResponse } from "next/server";
 

@@ -4,7 +4,7 @@ import {
   IAIService,
   IProduct,
   ISkinCreamParams,
-} from "@/app/shared/interfaces/ai-api";
+} from "@/app/shared/interfaces/ai";
 import OpenAI from "openai";
 
 export class OpenAIService implements IAIService {
