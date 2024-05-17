@@ -29,15 +29,15 @@ export class OpenAIService implements IAIService {
   }
 
   async getSkinCreamType(params: ISkinCreamParams): Promise<string> {
-    const message = this.messageBuilder.categoryRequest(params, true);
+    const message = this.messageBuilder.categoryRequest(params);
 
     const chatGPTResponse = await this.sendGptQuery(message);
 
     return this.getGptMessage(chatGPTResponse)?.toLowerCase();
   }
 
-  async getSkinCreamDescription(params: ISkinCreamParams): Promise<any> {
-    const message = this.messageBuilder.categoryRequest(params, false);
+  async getSkinCreamDescription(params: ISkinCreamParams, category: FaceCreamTypeEnum): Promise<any> {
+    const message = this.messageBuilder.descriptionRequest(params, category);
     const chatGPTResponse = await this.sendGptQuery(message);
 
     return this.getGptMessage(chatGPTResponse);

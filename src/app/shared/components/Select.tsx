@@ -7,11 +7,23 @@ type Props = {
   onSelect: (e: SyntheticEvent<HTMLSelectElement, Event>) => void;
 };
 export function Select({ label, name, options, onSelect }: Props) {
+  // TODO not working properly
+  const getOptionColorClass = (number: number | string) => {
+    if(name !== "skinColor") {
+      return '';
+    }
+    return `bg-neutral-${number}00`
+  }
+  const optionClassName = '';
+  if(name === "skinColor"){
+
+  }
+
   return (
-    <>
+    <div className="mt-4">
       <label
         htmlFor="countries"
-        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        className="block mb-2 text-sm font-semibold text-gray-900"
       >
         {label}
       </label>
@@ -23,11 +35,11 @@ export function Select({ label, name, options, onSelect }: Props) {
         name={name}
       >
         {options.map((o) => (
-          <option value={o} key={o}>
+          <option value={o} key={o} className={getOptionColorClass(o)}>
             {o}
           </option>
         ))}
       </select>
-    </>
+    </div>
   );
 }

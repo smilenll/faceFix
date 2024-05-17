@@ -5,10 +5,10 @@ import { IFaceCreamType } from "../shared/interfaces/ai";
 export const FaceCreamInfo = ({category, description}: IFaceCreamType) => {
 
   return (
-    <>
-      <h1>You should look for <strong>{category}</strong> type of cream.</h1>
+    <div className="mt-12">
+      <h1 className="flex justify-center text-lg font-bold">You should look for {category} type of cream.</h1>
       <br/>
-      <div>Description: {description}</div>
-    </>
+      <div>{description}</div>
+    </div>
   );
 };

@@ -14,15 +14,22 @@ export async function GET(
     throw Error("Category not found");
   }
 
-  const productsList = await OpenAIService.getInstance().getSkinCreamProducts(
-    slug
-  );
-  const amazonService = await new AmazonService(await AmazonAuth());
-  const marketProducts = await Promise.all(
-    productsList.map(async (p) => (await amazonService.getProduct(p.brand, p.productName)).body)
-  );
-
-  return NextResponse.json({
-    products: marketProducts,
-  });
+  try {
+    const productsList = await OpenAIService.getInstance().getSkinCreamProducts(
+      slug
+    );
+    const amazonService = await new AmazonService(await AmazonAuth());
+    const marketProducts = await Promise.all(
+      productsList.map(async (p) => (await amazonService.getProduct(p.brand, p.productName)).body)
+    );
+  
+    return NextResponse.json({
+      products: marketProducts,
+    });
+  } catch (error) {
+    console.log("MARKET ERROR",error);
+    return NextResponse.json({
+      error: "Products not found ",
+    });
+  }
 }

@@ -11,18 +11,23 @@ import { IMarketProduct } from "../shared/interfaces/store";
 export const Container = () => {
   const [creamCategory, setCreamCategory] = useState<Partial<IFaceCreamType>>();
   const [products, setProducts] = useState<Array<IMarketProduct> | undefined>();
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
-    fetch(`http://localhost:3000/api/market/${creamCategory?.category}`).then(
-      async (res) => {
-        console.log(res);
-        const json = await res.json();
-
-        setProducts(json.products);
-        console.log("setProducts", json);
-      }
-    ).catch(e => alert("Products not found"));
-
-    console.log(creamCategory);
+    if (creamCategory?.category) {
+      setLoading(true);
+      setProducts(undefined);
+      fetch(`http://localhost:3000/api/market/${creamCategory?.category}`)
+        .then(async (res) => {
+          const json = await res.json();
+          setProducts(json.products);
+          setLoading(false);
+        })
+        .catch((e) => {
+          setLoading(false);
+          alert("Not found products on the market. Try again !");
+        });
+    }
   }, [creamCategory]);
 
   return (
@@ -30,12 +35,13 @@ export const Container = () => {
       <FaceCreamForm setResult={setCreamCategory} />
       {isFaceCreamTypeGuard(creamCategory) && (
         <>
-          {" "}
-          <br />
-          <hr />
           <FaceCreamInfo {...creamCategory} />
-          <br />
-          <hr />
+          {/* TODO: Refactor  */}
+          {loading && (
+            <h1 className="mt-12 flex text-center justify-center text-xl font-bold">
+              Loading market results...
+            </h1>
+          )}
           {products && <FaceCreamMarket products={products} />}
         </>
       )}

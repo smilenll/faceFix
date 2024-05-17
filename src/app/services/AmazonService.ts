@@ -3,14 +3,14 @@ import { IAuthResponse, IMarketProduct, IStoreService } from "../shared/interfac
 
 export default class AmazonService implements IStoreService {
   constructor(private readonly tokens: IAuthResponse ) {}
-  
+
   getProduct(brand: string, productName: string): Promise<IResponse<IMarketProduct>> {
     return Promise.resolve({
       code:200,
       body: {
         brand,
         model: productName,
-        image: "image",
+        image: "image.jpg",
         price: Math.floor(Math.random() * 100)
       }
     })
