@@ -1,8 +1,8 @@
 'use client'
 
-import { IFaceCreamType } from "../shared/interfaces/ai";
+import { IFaceCreamResponse } from "../shared/interfaces/ai";
 
-export const FaceCreamInfo = ({category, description}: IFaceCreamType) => {
+export const FaceCreamInfo = ({category, description}: IFaceCreamResponse) => {
 
   return (
     <div className="mt-12">

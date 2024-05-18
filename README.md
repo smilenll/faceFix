@@ -32,3 +32,23 @@ Thickness
 Technologies
 - Next.js
 - TailwindCSS
+
+Tradeoffs - usually when I develop I always leave todos if needed
+- Implement real Amazon api
+- Implement dev mode to reduce unnecessary api calls during development
+- Validation and error handling (zod)
+- When services start become bigger API calls should be separated in other file
+- Deeper research for finding better communication with AI. Language model is not relabel.
+- Styling was not priority
+
+Next steps
+- Make it work with face picture and remove form
+- Stabilize AI response
+- Implement store(Amazon) api Connection
+- If form stays use Actions and servers-side rendering
+- Searching product by multiple categories
+- Implement accounts
+- Take pictures regular to measure effects from the product
+- Change product if is needed
+- Change AI versionkl
+- Work with multiple stores and find the best price

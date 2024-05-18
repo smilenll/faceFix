@@ -11,13 +11,14 @@ export interface ISkinCreamParams {
 export interface IProduct {
   brand: string;
   productName: string;
+  price: number;
 }
 
 export interface IAIResponseCreamList {
   creamList: Array<string>;
 }
 
-export interface IFaceCreamType {
+export interface IFaceCreamResponse {
   category: FaceCreamTypeEnum;
   description: string;
 }

@@ -49,7 +49,6 @@ export class OpenAIService implements IAIService {
     const message = this.messageBuilder.productsNames(category);
 
     const chatGPTResponse = await this.sendGptQuery(message);
-    console.log(chatGPTResponse);
 
     return this.getGptArray(chatGPTResponse);
   }

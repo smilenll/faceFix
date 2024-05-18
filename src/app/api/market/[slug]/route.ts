@@ -20,7 +20,7 @@ export async function GET(
     );
     const amazonService = await new AmazonService(await AmazonAuth());
     const marketProducts = await Promise.all(
-      productsList.map(async (p) => (await amazonService.getProduct(p.brand, p.productName)).body)
+      productsList.map(async (p) => (await amazonService.getProduct(p.brand, p.productName, p.price)).body)
     );
   
     return NextResponse.json({

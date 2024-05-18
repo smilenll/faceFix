@@ -33,9 +33,9 @@ export function FaceCreamForm(props: Props) {
     const response = await fetch(
       `http://localhost:3000/api/face-cream?${objectToQueryString(form)}`
     );
-    const r = await response.json();
-    console.log(r);
-    props.setResult(r);
+    const json = await response.json();
+    
+    props.setResult(json);
     setLoading(false);
   };
 

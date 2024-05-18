@@ -1,5 +1,5 @@
 import { FaceCreamTypeEnum } from "../enums/CreamEnum";
-import { IFaceCreamType } from "../interfaces/ai";
+import { IFaceCreamResponse } from "../interfaces/ai";
 
 export function isFaceCreamTypeEnumGuard(
   category?: string
@@ -8,7 +8,7 @@ export function isFaceCreamTypeEnumGuard(
 }
 
 export function isFaceCreamTypeGuard(
-  input?: Partial<IFaceCreamType>
-): input is IFaceCreamType {
+  input?: Partial<IFaceCreamResponse>
+): input is IFaceCreamResponse {
   return !!(isFaceCreamTypeEnumGuard(input?.category) && input?.description);
 }

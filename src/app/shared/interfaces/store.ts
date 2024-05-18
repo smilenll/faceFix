@@ -16,5 +16,5 @@ export interface IMarketProduct {
 }
 
 export interface IStoreService {
-  getProduct(brand: string, productName: string): Promise<IResponse<IMarketProduct>>
+  getProduct(brand: string, productName: string, price: number): Promise<IResponse<IMarketProduct>>
 }

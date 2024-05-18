@@ -6,3 +6,7 @@ export interface IResponse<BODY> {
 export interface IResponseMessage {
   message: string;
 }
+
+export interface IResponseError {
+  error: string;
+}
