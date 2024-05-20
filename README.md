@@ -14,9 +14,9 @@ pnpm dev
 bun dev
 ```
 
-Project: Face Skin Product Recommender
+## Project: Face Skin Product Recommender
 
-Requirement:
+### Requirement:
 1. Create Form:
 Age
 Skin Color
@@ -29,26 +29,27 @@ Thickness
   - Present a selection of skincare products available in the market that align with the suggested product type.
   - Include links or information on where users can purchase the recommended products.
 
-Technologies
+### Technologies
 - Next.js
 - TailwindCSS
 
-Tradeoffs - usually when I develop I always leave todos if needed
-- Implement real Amazon api
-- Implement dev mode to reduce unnecessary api calls during development
-- Validation and error handling (zod)
-- When services start become bigger API calls should be separated in other file
-- Deeper research for finding better communication with AI. Language model is not relabel.
-- Styling was not priority
+### Time spend: ~ 20h
 
-Next steps
-- Make it work with face picture and remove form
-- Stabilize AI response
-- Implement store(Amazon) api Connection
-- If form stays use Actions and servers-side rendering
-- Searching product by multiple categories
-- Implement accounts
-- Take pictures regular to measure effects from the product
-- Change product if is needed
-- Change AI versionkl
-- Work with multiple stores and find the best price
+### Trade-offs
+- **Use Real Amazon API:** Implement the official Amazon API for accurate data.
+- **Dev Mode Optimization:** Implement a development mode to minimize unnecessary API calls.
+- **Robust Validation and Error Handling:** Utilize Zod for data validation and error handling.
+- **Modularize API Calls:** As services grow, separate API calls into different files for better organization.
+- **Improve AI Communication:** Conduct in-depth research to enhance AI communication, acknowledging that the current language model may be unreliable.
+- **Low Priority on Styling:** Focus on functionality over styling for initial development stages.
+
+### Next Steps
+- **Integrate Face Recognition:** Enable functionality with facial recognition and remove the form.
+- **Stabilize AI Responses:** Enhance the consistency and reliability of AI responses.
+- **Implement Amazon API Connection:** Establish a robust connection to the Amazon API.
+- **Consider Form Alternatives:** If the form remains, use Actions and server-side rendering for better performance.
+- **Multi-Category Product Search:** Enable product searches across multiple categories.
+- **Account Implementation:** Introduce user accounts for a personalized experience.
+- **Regular Product Evaluation:** Regularly take pictures to measure product effectiveness and adjust products as needed.
+- **Update AI Version:** Allow users to change the AI version from the UI.
+- **Multi-Store Price Comparison:** Work with multiple stores to find the best prices.
