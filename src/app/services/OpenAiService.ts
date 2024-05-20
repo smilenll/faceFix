@@ -21,7 +21,7 @@ export class OpenAIService implements IAIService {
     } else {
       return (this.instance = new OpenAIService(
         new OpenAI({
-          apiKey: process.env["OPENAI_API_KEY"],
+          apiKey: process.env.OPENAI_API_KEY,
         }),
         new MessageBuilder()
       ));
@@ -36,7 +36,10 @@ export class OpenAIService implements IAIService {
     return this.getGptMessage(chatGPTResponse)?.toLowerCase();
   }
 
-  async getSkinCreamDescription(params: ISkinCreamParams, category: FaceCreamTypeEnum): Promise<any> {
+  async getSkinCreamDescription(
+    params: ISkinCreamParams,
+    category: FaceCreamTypeEnum
+  ): Promise<any> {
     const message = this.messageBuilder.descriptionRequest(params, category);
     const chatGPTResponse = await this.sendGptQuery(message);
 
@@ -65,7 +68,7 @@ export class OpenAIService implements IAIService {
   ): string {
     //TODO validate response handle multiple choices
     if (!response.choices[0].message.content) throw Error("Bad request");
-    
+
     return response.choices[0].message.content;
   }
 
@@ -74,7 +77,7 @@ export class OpenAIService implements IAIService {
   ): Array<IProduct> {
     //TODO validate response handle multiple choices
     if (!response.choices[0].message.content) throw Error("Bad request");
-    
+
     return JSON.parse(response.choices[0].message.content);
   }
 }

@@ -1,12 +1,12 @@
 "use client";
 import { FormEvent, useState } from "react";
 import { Select } from "../shared/components/Select";
-import { ISkinCreamParams } from "../shared/interfaces/ai";
+import { IFaceCreamResponse, ISkinCreamParams } from "../shared/interfaces/ai";
 import { OilinessEnum, ThicknessEnum } from "../shared/enums/SkinEnum";
 import { objectToQueryString } from "../utils/ObjectToString";
 
 type Props = {
-  setResult: (result: any) => void;
+  setResult: (result: IFaceCreamResponse) => void;
 };
 
 export function FaceCreamForm(props: Props) {
@@ -27,20 +27,22 @@ export function FaceCreamForm(props: Props) {
     });
   };
 
-  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     setLoading(true);
     event.preventDefault();
     const response = await fetch(
-      `http://localhost:3000/api/face-cream?${objectToQueryString(form)}`
+      `${process.env.NEXT_PUBLIC_API_URL}face-cream?${objectToQueryString(
+        form
+      )}`
     );
     const json = await response.json();
-    
+
     props.setResult(json);
     setLoading(false);
   };
 
   return (
-    <form className="max-w-sm mx-auto" onSubmit={(e) => onSubmit(e)}>
+    <form className="max-w-sm mx-auto" onSubmit={(e) => handleSubmit(e)}>
       <label
         htmlFor="countries"
         className="mt-12 block mb-2 text-lg font-bold text-gray-900"

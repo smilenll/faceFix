@@ -2,19 +2,24 @@ import { IProduct } from "./ai";
 import { IResponse, IResponseMessage } from "./http";
 
 export interface IAuthResponse {
-    access_token: string,
-    refresh_token: string,
-    token_type: string,
-    expires_in: number,
+  access_token: string;
+  refresh_token: string;
+  token_type: string;
+  expires_in: number;
 }
 
 export interface IMarketProduct {
-  brand: string,
-  model: string,
-  image: string,
-  price: number
+  brand: string;
+  model: string;
+  image: string;
+  price: number;
+  link: string;
 }
 
 export interface IStoreService {
-  getProduct(brand: string, productName: string, price: number): Promise<IResponse<IMarketProduct>>
+  getProduct(
+    brand: string,
+    productName: string,
+    price: number
+  ): Promise<IResponse<IMarketProduct>>;
 }

@@ -7,17 +7,21 @@ type Props = {
   onSelect: (e: SyntheticEvent<HTMLSelectElement, Event>) => void;
 };
 export function Select({ label, name, options, onSelect }: Props) {
-  // TODO not working properly
   const getOptionColorClass = (number: number | string) => {
-    if(name !== "skinColor") {
-      return '';
+    if (name !== "skinColor") {
+      return "";
     }
-    return `bg-neutral-${number}00`
-  }
-  const optionClassName = '';
-  if(name === "skinColor"){
+    return `bg-neutral-${number}00`;
+  };
 
-  }
+  const renderOption = (option: string | number) => {
+    const className = getOptionColorClass(option);
+    return (
+      <option value={option} key={option} className={className}>
+        {option}
+      </option>
+    );
+  };
 
   return (
     <div className="mt-4">
@@ -34,11 +38,7 @@ export function Select({ label, name, options, onSelect }: Props) {
         onChange={onSelect}
         name={name}
       >
-        {options.map((o) => (
-          <option value={o} key={o} className={getOptionColorClass(o)}>
-            {o}
-          </option>
-        ))}
+        {options.map((o) => renderOption(o))}
       </select>
     </div>
   );

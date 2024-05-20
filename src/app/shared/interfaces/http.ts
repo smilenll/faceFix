@@ -9,4 +9,5 @@ export interface IResponseMessage {
 
 export interface IResponseError {
   error: string;
+  status: string;
 }

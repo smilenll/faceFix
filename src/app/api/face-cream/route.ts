@@ -1,4 +1,5 @@
-import { isFaceCreamTypeEnumGuard } from "@/app/shared/type-guards/type-guards";
+import { getErrorResponse } from "@/app/builders/ResponseBuilder";
+import { isFaceCreamTypeEnumGuard } from "@/app/shared/guards/type-guards";
 import { OilinessEnum, ThicknessEnum } from "@/app/shared/enums/SkinEnum";
 import { ISkinCreamParams } from "@/app/shared/interfaces/ai";
 import { OpenAIService } from "@/app/services/OpenAiService";
@@ -6,14 +7,13 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   const params: ISkinCreamParams = getParams(req);
-
   const service = OpenAIService.getInstance();
   const category = await service.getSkinCreamType(params);
+
   if (!isFaceCreamTypeEnumGuard(category)) {
-    return NextResponse.json({
-      error: "Category not found! Try again :)",
-    });
+    return getErrorResponse("Category not found! Try again.", 404);
   }
+
   const description = await service.getSkinCreamDescription(params, category);
 
   return NextResponse.json({

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { FaceCreamForm } from "./face-cream-form";
 import { FaceCreamInfo } from "./face-cream-info";
-import { isFaceCreamTypeGuard } from "../shared/type-guards/type-guards";
+import { isFaceCreamTypeGuard } from "../shared/guards/type-guards";
 import { IFaceCreamResponse } from "../shared/interfaces/ai";
 import { FaceCreamMarket } from "./face-cream-market";
 

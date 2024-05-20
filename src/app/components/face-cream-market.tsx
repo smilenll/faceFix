@@ -6,28 +6,32 @@ import { IMarketProduct } from "../shared/interfaces/store";
 import { FaceCreamCard } from "./face-cream-card";
 
 export const FaceCreamMarket = ({
-  creamCategory
+  creamCategory,
 }: {
-  creamCategory?: IFaceCreamResponse
+  creamCategory?: IFaceCreamResponse;
 }) => {
   const [products, setProducts] = useState<Array<IMarketProduct> | undefined>();
   const [loading, setLoading] = useState(false);
+
+  const handleProducts = async (response: Response) => {
+    const json = await response.json();
+    if (json.error) {
+      alert("Products not found on the market. Please try again!");
+    } else {
+      setProducts(json.products);
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (creamCategory?.category) {
       setLoading(true);
       setProducts(undefined);
-      fetch(`http://localhost:3000/api/market/${creamCategory?.category}`)
-        .then(async (res) => {
-          const json = await res.json();
-          setProducts(json.products);
-          setLoading(false);
-        })
-        .catch((e) => {
-          setLoading(false);
-          console.error(e);
-          alert("Not found products on the market. Try again !");
-        });
+      fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}market/${creamCategory?.category}`
+      ).then(async (res: Response) => {
+        handleProducts(res);
+      });
     }
   }, [creamCategory]);
 

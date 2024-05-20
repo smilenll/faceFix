@@ -6,12 +6,12 @@ const mockResponse = {
 };
 
 export const AmazonAuth = async () => {
-  // TODO pass from outside
+  // TODO pass credentials from outside
   const credentials = {
     grant_type: "refresh_token",
-    refresh_token: process.env["AMAZON_REFRESH_TOKEN"],
-    client_id: process.env["MOCK_AMAZON_CLIENT_ID"],
-    client_secret: process.env["MOCK_AMAZON_CLIENT_SECRET"],
+    refresh_token: process.env.AMAZON_REFRESH_TOKEN,
+    client_id: process.env.MOCK_AMAZON_CLIENT_ID,
+    client_secret: process.env.MOCK_AMAZON_CLIENT_SECRET,
   };
 
   try {

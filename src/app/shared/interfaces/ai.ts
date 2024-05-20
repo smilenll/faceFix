@@ -23,8 +23,11 @@ export interface IFaceCreamResponse {
   description: string;
 }
 
-export interface IAIService { 
+export interface IAIService {
   getSkinCreamType(params: ISkinCreamParams): Promise<string>;
-  getSkinCreamDescription(params: ISkinCreamParams, category: FaceCreamTypeEnum): Promise<string>;
+  getSkinCreamDescription(
+    params: ISkinCreamParams,
+    category: FaceCreamTypeEnum
+  ): Promise<string>;
   getSkinCreamProducts(cream: FaceCreamTypeEnum): Promise<Array<IProduct>>;
 }
