@@ -8,14 +8,14 @@ export class MessageBuilder {
     return (`
     Age: ${age}
     Oiliness: ${oiliness}
-    Skin color measured from 1 to 9 from light to dark: ${skinColor}
+    Skin color: measured from 1 to 9, where 1 is light and 9 is dark: ${skinColor}
     Skin thickness: ${thickness}.`)
   }
 
   public categoryRequest(
     params: ISkinCreamParams,
   ): string {
-    const message = `Chose skin category cream from
+    const message = `Choose a skin cream category from
     ${Object.values(FaceCreamTypeEnum)}
     based on person skin
     ${this.getBasicFormText(params)}
@@ -31,7 +31,7 @@ export class MessageBuilder {
     const message = `For
     person with skin parameters 
     ${this.getBasicFormText(params)}
-    Why category ${category} is the best chose`;
+    Why category ${category} is the best choice?`;
 
     return message;
   }
@@ -39,7 +39,7 @@ export class MessageBuilder {
   public productsNames(category: FaceCreamTypeEnum) {
     return `For face cream type
     ${category}
-    give me an option from 3 most popular product by
+    give me options from the 3 most popular product by
     brand,
     productName
     price,

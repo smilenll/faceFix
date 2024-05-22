@@ -31,6 +31,8 @@ export const FaceCreamMarket = ({
         `${process.env.NEXT_PUBLIC_API_URL}market/${creamCategory?.category}`
       ).then(async (res: Response) => {
         handleProducts(res);
+      }).catch(e => {
+        
       });
     }
   }, [creamCategory]);

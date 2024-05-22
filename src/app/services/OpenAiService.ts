@@ -39,7 +39,7 @@ export class OpenAIService implements IAIService {
   async getSkinCreamDescription(
     params: ISkinCreamParams,
     category: FaceCreamTypeEnum
-  ): Promise<any> {
+  ): Promise<string> {
     const message = this.messageBuilder.descriptionRequest(params, category);
     const chatGPTResponse = await this.sendGptQuery(message);
 
@@ -75,7 +75,7 @@ export class OpenAIService implements IAIService {
   private getGptArray(
     response: OpenAI.Chat.Completions.ChatCompletion
   ): Array<IProduct> {
-    //TODO validate response handle multiple choices
+    //TODO validate response and handle multiple choices
     if (!response.choices[0].message.content) throw Error("Bad request");
 
     return JSON.parse(response.choices[0].message.content);

@@ -1,9 +1,9 @@
 "use client";
-import { FormEvent, useState } from "react";
+import { FormEvent, SyntheticEvent, useState } from "react";
 import { Select } from "../shared/components/Select";
 import { IFaceCreamResponse, ISkinCreamParams } from "../shared/interfaces/ai";
 import { OilinessEnum, ThicknessEnum } from "../shared/enums/SkinEnum";
-import { objectToQueryString } from "../utils/ObjectToString";
+import { handleError } from "../utils/HandleError";
 
 type Props = {
   setResult: (result: IFaceCreamResponse) => void;
@@ -19,8 +19,11 @@ export function FaceCreamForm(props: Props) {
   });
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e: any) => {
-    const { name, value } = e.target;
+  const handleChange = (e: SyntheticEvent<HTMLSelectElement, Event>) => {
+    const { name, value } = e.target as unknown as {
+      name: string;
+      value: string;
+    };
     setForm({
       ...form,
       [name]: value,
@@ -30,15 +33,19 @@ export function FaceCreamForm(props: Props) {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     setLoading(true);
     event.preventDefault();
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}face-cream?${objectToQueryString(
-        form
-      )}`
-    );
-    const json = await response.json();
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}face-cream?${new URLSearchParams(
+          form as unknown as Record<string, string>
+        )}`
+      );
+      const json = await response.json();
 
-    props.setResult(json);
-    setLoading(false);
+      props.setResult(json);
+      setLoading(false);
+    } catch (error) {
+      handleError(error, setLoading);
+    }
   };
 
   return (

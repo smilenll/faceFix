@@ -23,7 +23,7 @@ export async function GET(req: NextRequest) {
 }
 
 const getParams = (req: NextRequest) => {
-  // TODO Validate prams with zod
+  // TODO Validate params with zod
   const searchParams = req.nextUrl.searchParams;
 
   return {

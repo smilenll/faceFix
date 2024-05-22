@@ -1,5 +1,3 @@
-"use client";
-
 import { IFaceCreamResponse } from "../shared/interfaces/ai";
 
 export const FaceCreamInfo = ({
